@@ -212,10 +212,10 @@ Start-UDRestApi -Port 80 -Wait -Endpoint @(
   $restAPIContent | Out-File -FilePath "O:\UniversalDashboard\UDRestAPI\restapi.ps1"
 
   #Set the RESTAPI binding to match the startup port in the script
-  New-WebBinding -Name 'UDDashboard' -IPAddress '*' -Port '80' -HostHeader 'uddashboard.jargonaught.com'
+  New-WebBinding -Name 'UDDashboard' -IPAddress '*' -Port '80' -HostHeader 'uddashboard.${var.myPublicDomain}'
   Remove-WebBinding -Name 'UDDashboard' -IPAddress '*' -Port '80' -HostHeader ''
 
-  New-WebBinding -Name 'UDRestAPI' -IPAddress '*' -Port '80' -HostHeader 'udrestapi.jargonaught.com'
+  New-WebBinding -Name 'UDRestAPI' -IPAddress '*' -Port '80' -HostHeader 'udrestapi.${var.myPublicDomain}'
   Remove-WebBinding -Name 'UDRestAPI' -IPAddress '*' -Port '80' -HostHeader ''
 
   Remove-Website -Name 'Default Web Site'
