@@ -1,1 +1,2 @@
+userdata/ConfigureRemoting.ps1 linguist-detectable=false
 **/ec2.tf linguist-language=HCL
