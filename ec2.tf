@@ -23,6 +23,20 @@ resource "aws_instance" "myec2" {
     delete_on_termination = true
   }
 
+  ebs_block_device {
+    device_name = "xvdf"
+    delete_on_termination = true
+    volume_size = 10
+    volume_type = "standard"
+  }
+
+  ebs_block_device {
+    device_name = "xvdg"
+    delete_on_termination = true
+    volume_size = 10
+    volume_type = "standard"
+  }
+
   # AZ to launch in
   availability_zone = var.aws_availability_zone
 
@@ -38,13 +52,21 @@ resource "aws_instance" "myec2" {
   winrm quickconfig -q & winrm set winrm/config @{MaxTimeoutms="1800000"} & winrm set winrm/config/service @{AllowUnencrypted="true"} & winrm set winrm/config/service/auth @{Basic="true"}
 </script>
 <powershell>
+  #Install WMF 5.1
+  $source = "https://go.microsoft.com/fwlink/?linkid=839516"
+  $destination = "$env:temp\Win8.1AndW2K12R2-KB3191564-x64.msu" 
+  $wc = New-Object System.Net.WebClient 
+  $wc.DownloadFile($source, $destination)
+  Start-Process -FilePath $destination -Wait -ArgumentList '/quiet /norestart'
+ 
   # Allow WinRM Connection
   netsh advfirewall firewall add rule name="WinRM in" protocol=TCP dir=in profile=any localport=5985 remoteip=${var.winrm_IP} localip=any action=allow
   
   # Configure WinRM certificates
   [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
   Invoke-WebRequest -Uri ${var.gitHub_winRM_cert_script} -OutFile "$env:temp\ConfigureRemotingForAnsible.ps1"
-  Start-Process -FilePath "$env:temp\ConfigureRemotingForAnsible.ps1" -Wait
+  Set-Location $env:temp
+  .\ConfigureRemotingForAnsible.ps1
 
   # Disable IE Security Function
   function Disable-InternetExplorerESC {
@@ -190,6 +212,7 @@ Start-UDRestApi -Port 8080 -Wait -Endpoint @(
 EOF
 }
 
+/*
 resource "aws_ebs_volume" "ODrive" {
   availability_zone = var.aws_availability_zone
   size              = 10
@@ -218,5 +241,5 @@ resource "aws_volume_attachment" "PDriveAttach" {
   volume_id   = aws_ebs_volume.PDrive.id
   instance_id = aws_instance.myec2.id
 }
-
+*/
 

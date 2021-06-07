@@ -1,11 +1,11 @@
 variable "admin_password" {
   description = "Windows Administrator password to login as for povisioning"
-  default = ""
+  default     = ""
 }
 
 variable "key_name" {
   description = "Name of the SSH keypair to use in AWS."
-  default = ""
+  default     = ""
 }
 
 variable "aws_region" {
@@ -48,3 +48,23 @@ variable "UD_version_number" {
   default     = ""
 }
 
+variable "ec2_additional_disk_1" {
+  description = "Websites volume"
+  default     = ""
+}
+
+variable "ec2_additional_disk_2" {
+  description = "Logs volume"
+  default     = ""
+}
+
+variable "ec2_ami_name_searchstring" {
+  description = "search string for ami data lookup"
+  default     = ""
+}
+
+
+variable "userdata_dashboard_path" {
+  description = "Path to UD Dashboard website folder"
+  default     = ""
+}
