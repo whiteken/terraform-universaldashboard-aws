@@ -19,15 +19,11 @@ data "aws_ami" "latest_MS_server_image" {
 }
 
 resource "aws_instance" "myec2" {
-  # The connection block tells our provisioner how to 
-  # communicate with the resource (instance)
-  # WinRM will not work unless you include a SG here to allow
-  # traffic from TCP ports 5985/5986.
+
   connection {
     type     = "winrm"
     user     = "Administrator"
     password = var.admin_password
-    # Limit for WinRM timeout
     timeout = "10m"
   }
 
@@ -243,35 +239,3 @@ Start-UDRestApi -Port 80 -Wait -Endpoint @(
 <runAsLocalSystem>true</runAsLocalSystem> 
 EOF
 }
-
-/*
-resource "aws_ebs_volume" "ODrive" {
-  availability_zone = var.aws_availability_zone
-  size              = 10
-  
-  depends_on = [
-    aws_instance.myec2
-  ]
-}
-
-resource "aws_ebs_volume" "PDrive" {
-  availability_zone = var.aws_availability_zone
-  size              = 10
-  depends_on = [
-    aws_instance.myec2
-  ]
-}
-
-resource "aws_volume_attachment" "ODriveAttach" {
-  device_name = "xvdf"
-  volume_id   = aws_ebs_volume.ODrive.id
-  instance_id = aws_instance.myec2.id
-}
-
-resource "aws_volume_attachment" "PDriveAttach" {
-  device_name = "xvdg"
-  volume_id   = aws_ebs_volume.PDrive.id
-  instance_id = aws_instance.myec2.id
-}
-*/
-
