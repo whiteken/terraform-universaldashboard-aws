@@ -62,9 +62,3 @@ variable "ec2_ami_name_searchstring" {
   description = "search string for ami data lookup"
   default     = ""
 }
-
-
-variable "userdata_dashboard_path" {
-  description = "Path to UD Dashboard website folder"
-  default     = ""
-}
