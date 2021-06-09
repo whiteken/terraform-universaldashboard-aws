@@ -5,7 +5,7 @@ parameters:
     default: ''
 
 - ${{ if contains(parameters.terraformOperation, 'plan') }}:
-  - stage: 'Terraform plan'
+  - stage: 'plan'
     jobs:
     - deployment: 'Terraform plan'
       variables:
