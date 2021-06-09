@@ -6,6 +6,9 @@ ___
 
 [Universal Dashboard](https://docs.universaldashboard.io/) is a PowerShell Dashboarding product from [Ironman Software](https://ironmansoftware.com/) - no affiliation, just a fan! v2.9.0 is a legacy version. In the latest version PowerShell Universal Dashboard is now part of [PowerShell Universal](https://ironmansoftware.com/powershell-universal). 
 
+
+*If you want to access the API or Dashboard website **remotely** via the DNS entries created by the Terraform code, a paid license for Universal Dashboard Enterprise is needed, but it's not required to run the terraform or create the infra. Alternatively update the code to use the free [community edition](https://www.powershellgallery.com/packages/UniversalDashboard.Community/2.9.0).*
+
 ___
 
 ### Pre-requisites:
@@ -14,9 +17,6 @@ ___
 - [AWS provider authentication](https://registry.terraform.io/providers/hashicorp/aws/latest/docs) configured (see methods below).
 - A registered domain on AWS. For this you can use [Route53](https://console.aws.amazon.com/route53/home#DomainListing:).
 - An EC2 Key Pair (search for "EC2 Key Pair" on the AWS console homepage)
-
-*If you want to access the API or Dashboard website remotely via the DNS entries created by the Terraform code, a paid license for Universal Dashboard Enterprise is needed, but it's not required to run the terraform or create the infra. Alternatively use the free [community edition](https://www.powershellgallery.com/packages/UniversalDashboard.Community/2.9.0).*
-
 ___
 
 ### AWS Provider Configuration
