@@ -8,7 +8,8 @@ stages:
 - stage: Terraform_Plan  # name of the stage (A-Z, a-z, 0-9, and underscore)
   displayName: Terrfrom Plan  # friendly name to display in the UI
   dependsOn: []
-  condition: eq(${{ parameters.terraformOperation }}, 'plan'):
+  #condition:
+  ${{ if eq( ${{ parameters.terraformOperation }}, 'plan') }}:
     #variables: # several syntaxes, see specific section
     jobs:
     - deployment: plan   # name of the deployment job, A-Z, a-z, 0-9, and underscore. The word "deploy" is a keyword and is unsupported as the deployment name.
