@@ -1,15 +1,15 @@
 parameters:
-  - name: 'terraform-operation'
+  - name: 'terraformOperation'
     displayName: 'Terraform operation'
     type: string
     default: ''
 
-- ${{ if contains(parameters.terraform-operation, 'plan') }}:
+- ${{ if contains(parameters.terraformOperation, 'plan') }}:
   - stage: 'Terraform plan'
     jobs:
     - deployment: 'Terraform plan'
       variables:
-      - group: ${{ parameters.azKeyVault }}
+      - group: 'keyVaultAZDO'
       displayName: 'Terraform plan'
       pool:
         name: windows-latest
