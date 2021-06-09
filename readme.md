@@ -107,6 +107,29 @@ The gateway is attached to the VPC and routing is configured for outbound Intern
 
 ___
 
+Following a succesful run of the ec2 user data, the Universal Dashboard will be available on the CNAME created in your domain:
+(yourdomain is a placeholder for the domain entered in the ```terraform.tfvars``` file)
+
+http://uddashboard.yourdomain.com
+
+The UD restapi is available on:
+
+http://udrestapi.yourdomain.com
+
+You can test the API with the following:
+
+```Invoke-RestMethod http://udrestapi.yourdomain.com/api/user```
+
+which should return:
+
+```
+Adam
+Sarah
+Bill
+```
+
+___
+
 **Note1** - *I've had varying degrees of success with applying the EC2 PowerShell Userdata within the ec2.tf file.  The configuration steps themselves are sound, but occasionally they are simply not executed.  In the end I've created an AMI after a successful run, as in best practice, but recording the steps here for later reference.*
 
 ___
