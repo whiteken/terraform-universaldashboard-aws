@@ -9,7 +9,7 @@ stages:
   displayName: Terrfrom Plan  # friendly name to display in the UI
   dependsOn: []
   condition: eq(${{ parameters.terraformOperation }},'plan')
-  variables: # several syntaxes, see specific section
+  #variables: # several syntaxes, see specific section
   jobs:
   - deployment: plan   # name of the deployment job, A-Z, a-z, 0-9, and underscore. The word "deploy" is a keyword and is unsupported as the deployment name.
     displayName: plan  # friendly name to display in the UI
@@ -21,7 +21,7 @@ stages:
     continueOnError: true                # 'true' if future jobs should run even if this job fails; defaults to 'false'
     timeoutInMinutes: 3       # how long to run the job before automatically cancelling
     cancelTimeoutInMinutes: 2  # how much time to give 'run always even if cancelled tasks' before killing them
-    variables: # several syntaxes, see specific section
+    #variables: # several syntaxes, see specific section
     environment: string  # target environment name and optionally a resource name to record the deployment history; format: <environment-name>.<resource-name>
     strategy:
       runOnce:    #rolling, canary are the other strategies that are supported
