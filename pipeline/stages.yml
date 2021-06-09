@@ -1,0 +1,33 @@
+parameters:
+  - name: 'terraform-operation'
+    displayName: 'Terraform operation'
+    type: string
+    default: ''
+
+- ${{ if contains(parameters.terraform-operation, 'plan') }}:
+  - stage: 'Terraform plan'
+    jobs:
+    - deployment: 'Terraform plan'
+      variables:
+      - group: ${{ parameters.azKeyVault }}
+      displayName: 'Terraform plan'
+      pool:
+        name: windows-latest
+      #environment: ${{ parameters.azureDevOpsEnvironment }}
+      strategy:
+        runOnce:
+          deploy:
+            steps:
+            - task: TerraformInstaller
+                displayName: install terraform
+                inputs:
+                  terraformVersion: 0.14.5
+
+            - task: PowerShell@2
+              inputs:
+                targetType: 'inline'
+                script: |
+                  Get-ChildItem -Path $(Pipeline.Workspace)
+                  $files = Get-ChildItem $env:Pipeline_Workspace -Recurse -Verbose
+                  $files | Measure-Object
+                  $files | ForEach-Object {Write-Host $_.FullName}
