@@ -16,4 +16,4 @@ trigger:
 stages:
 - template: ${{variables['System.DefaultWorkingDirectory']}}/pipeline/stages.yml
   parameters:
-    terraform-operation: ${{ parameters.terraformOperation}}
+    terraformOperation: ${{ parameters.terraformOperation}}
