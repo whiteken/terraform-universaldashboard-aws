@@ -22,7 +22,8 @@ ___
 ### AWS Provider Configuration
 Terraform has several methods for AWS provider configuration:  
 
-**Method 1 - Shared Credentials file** 
+**Method 1 - Shared Credentials file**
+
 Use the [AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2.html). 
 With this installed, run ```aws configure```
 
@@ -31,6 +32,7 @@ Follow the prompts to input your AWS Access Key ID and Secret Access Key, which 
 The configuration process creates a file at ```~/.aws/credentials``` on macOS and Linux or ```%UserProfile%\.aws\credentials``` on Windows, where your credentials are stored.
 
 **Method 2 - Static Credentials**
+
 Alternatively, static credentials can be provided by adding an access_key and secret_key in-line in the AWS provider block.  **Be careful not to commit this to a public repo!**
 
 ```
@@ -42,6 +44,7 @@ provider "aws" {
 ```
 
 **Method 3 - Environment variables**
+
 You can provide your credentials via the ```AWS_ACCESS_KEY_ID``` and ```AWS_SECRET_ACCESS_KEY```, environment variables, representing your AWS Access Key and AWS Secret Key, respectively.
 
 ___
