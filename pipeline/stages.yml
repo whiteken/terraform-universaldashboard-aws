@@ -10,13 +10,9 @@ stages:
   dependsOn: []
   condition: eq(${{ parameters.terraformOperation }},'plan')
   jobs:
-    variables:
-    - group: 'keyVaultAZDO'
     displayName: 'Terraform plan'
     pool:
       name: windows-latest
-  - job: ShowVariables
-    displayName: Show variables
     steps:
     - task: TerraformInstaller
       displayName: install terraform
