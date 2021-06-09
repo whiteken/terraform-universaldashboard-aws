@@ -4,30 +4,30 @@ parameters:
     type: string
     default: ''
 
-- ${{ if contains(parameters.terraformOperation, 'plan') }}:
-  - stage: 'plan'
-    jobs:
-    - deployment: 'Terraform plan'
-      variables:
-      - group: 'keyVaultAZDO'
-      displayName: 'Terraform plan'
-      pool:
-        name: windows-latest
-      #environment: ${{ parameters.azureDevOpsEnvironment }}
-      strategy:
-        runOnce:
-          deploy:
-            steps:
-            - task: TerraformInstaller
-                displayName: install terraform
-                inputs:
-                  terraformVersion: 0.14.5
+stages:
+- stage: 'Terraform plan'
+  displayName: 'terraform plan'
+  dependsOn: []
+  condition: eq(${{ parameters.terraformOperation }},'plan')
+  jobs:
+    variables:
+    - group: 'keyVaultAZDO'
+    displayName: 'Terraform plan'
+    pool:
+      name: windows-latest
+  - job: ShowVariables
+    displayName: Show variables
+    steps:
+    - task: TerraformInstaller
+      displayName: install terraform
+      inputs:
+        terraformVersion: 0.14.5
 
-            - task: PowerShell@2
-              inputs:
-                targetType: 'inline'
-                script: |
-                  Get-ChildItem -Path $(Pipeline.Workspace)
-                  $files = Get-ChildItem $env:Pipeline_Workspace -Recurse -Verbose
-                  $files | Measure-Object
-                  $files | ForEach-Object {Write-Host $_.FullName}
+    - task: PowerShell@2
+      inputs:
+        targetType: 'inline'
+        script: |
+          Get-ChildItem -Path $(Pipeline.Workspace)
+          $files = Get-ChildItem $env:Pipeline_Workspace -Recurse -Verbose
+          $files | Measure-Object
+          $files | ForEach-Object {Write-Host $_.FullName}
