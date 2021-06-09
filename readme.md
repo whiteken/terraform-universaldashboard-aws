@@ -4,7 +4,7 @@
 
 ___
 
-[Universal Dashboard](https://docs.universaldashboard.io/) is a PowerShell Dashboarding product from [Ironman Software](https://ironmansoftware.com/) - no affiliation, just a fan! v2.9.0 is a legacy version. In the latest version PowerShell Universal Dashboard is now part of [PowerShell Universal](https://ironmansoftware.com/powershell-universal). 
+[Universal Dashboard](https://docs.universaldashboard.io/) is a PowerShell Dashboarding product from [Ironman Software](https://ironmansoftware.com/) - no affiliation, just a fan! v2.9.0 is a legacy version. In the latest version PowerShell Universal Dashboard is now part of [PowerShell Universal](https://ironmansoftware.com/powershell-universal).
 
 
 *If you want to access the API or Dashboard website **remotely** via the DNS entries created by the Terraform code, a paid license for Universal Dashboard Enterprise is needed, but it's not required to run the terraform or create the infra. Alternatively update the code to use the free [community edition](https://www.powershellgallery.com/packages/UniversalDashboard.Community/2.9.0).*
@@ -12,7 +12,7 @@ ___
 ___
 
 ### Pre-requisites:
-- [Terraform](https://www.terraform.io/downloads.html) installed locally 
+- [Terraform](https://www.terraform.io/downloads.html) installed locally
 - A valid [AWS account](https://aws.amazon.com/premiumsupport/knowledge-center/create-and-activate-aws-account/)
 - [AWS provider authentication](https://registry.terraform.io/providers/hashicorp/aws/latest/docs) configured (see methods below).
 - A registered domain on AWS. For this you can use [Route53](https://console.aws.amazon.com/route53/home#DomainListing:).
@@ -20,11 +20,11 @@ ___
 ___
 
 ### AWS Provider Configuration
-Terraform has several methods for AWS provider configuration:  
+Terraform has several methods for AWS provider configuration:
 
 **Method 1 - Shared Credentials file**
 
-Use the [AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2.html). 
+Use the [AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2.html).
 With this installed, run ```aws configure```
 
 Follow the prompts to input your AWS Access Key ID and Secret Access Key, which you'll find on [this page](https://console.aws.amazon.com/iam/home?#security_credential).
@@ -37,7 +37,6 @@ Alternatively, static credentials can be provided by adding an access_key and se
 
 ```
 provider "aws" {
-  region     = "us-west-2"
   access_key = "my-access-key"
   secret_key = "my-secret-key"
 }
@@ -96,12 +95,12 @@ ___
 - 1 x EC2 t2.micro instance
     Configured with 1 x 40GB HD, 2 x 10 GB HD
 - 1 x VPC
-- 1 x Subnet 
+- 1 x Subnet
 - 1 x Internet Gateway
 - 2 x Security Groups
 - 1 x DNS Zone
 - 1 x Public IP (not static)
-- 3 x DNS CNAMES 
+- 3 x DNS CNAMES
 
 The gateway is attached to the VPC and routing is configured for outbound Internet access.
 
