@@ -11,7 +11,7 @@ stages:
     dependsOn: []
     jobs:
     - deployment: plan   # name of the deployment job, A-Z, a-z, 0-9, and underscore. The word "deploy" is a keyword and is unsupported as the deployment name.
-      displayName: plan  # friendly name to display in the UI
+      displayName: 'Terraform plan'  # friendly name to display in the UI
       pool:                # see pool schema
         vmImage: 'vs2017-win2016' #'Ubuntu-16.04' #"vs2017-win2016" #Ubuntu-latest
         demands: []
@@ -21,15 +21,11 @@ stages:
       timeoutInMinutes: 3       # how long to run the job before automatically cancelling
       cancelTimeoutInMinutes: 2  # how much time to give 'run always even if cancelled tasks' before killing them
       #variables: # several syntaxes, see specific section
-      environment: string  # target environment name and optionally a resource name to record the deployment history; format: <environment-name>.<resource-name>
+      environment: AWS  # target environment name and optionally a resource name to record the deployment history; format: <environment-name>.<resource-name>
       strategy:
         runOnce:    #rolling, canary are the other strategies that are supported
           deploy:
             steps:
-            #- task: TerraformInstaller
-            #  displayName: install terraform
-            #  inputs:
-            #    terraformVersion: 0.14.5
             - task: PowerShell@2
               inputs:
                 targetType: inline
