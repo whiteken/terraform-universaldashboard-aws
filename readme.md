@@ -1,7 +1,8 @@
 # Terraform / AWS / Universal Dashboard / IIS
 
-###### This repo is a home project containing HCL Terraform code to spin up a Windows Server 2019 EC2 t2.micro instance in AWS, running a basic IIS hosted Universal Dashboard (v.2.9.0) website and REST API.
+##### This repo is a home project containing HCL Terraform code to spin up a Windows Server 2019 EC2 t2.micro instance in AWS, running a basic IIS hosted Universal Dashboard (v.2.9.0) website and REST API.
 
+N.B. Currently the terraform state file ```terraform.tfstate``` is stored locally.  Be careful with this file!
 ___
 
 [Universal Dashboard](https://docs.universaldashboard.io/) is a PowerShell Dashboarding product from [Ironman Software](https://ironmansoftware.com/) - no affiliation, just a fan! v2.9.0 is a legacy version. In the latest version PowerShell Universal Dashboard is now part of [PowerShell Universal](https://ironmansoftware.com/powershell-universal).
@@ -84,7 +85,7 @@ ___
 - Navigate to the ```IaC``` folder
 - Ensure ```terraform.fvars``` file is present and populated with your own correct values
 - Ensure AWS provider is configured
-- From the ```IaC``` folder, run: ```terraform init ``` (which will download the required AWS provider)
+- From the ```IaC``` folder, run: ```terraform init``` (which will download the required AWS provider)
 - Next run: ```terraform plan```
 - Followed by: ```terraform apply```
 
