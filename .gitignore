@@ -37,5 +37,5 @@
 # Ignore lock file
 **/.terraform.lock.hcl
 
-# Do not add the key pair
-terraform-UniversalDashboard-mkII.pem
+# Ignore ec2 key pair
+*.pem
